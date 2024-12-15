@@ -1,0 +1,21 @@
+# Fichiers de configuration locaux :
+.env
+
+# Fichiers de cache :
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Fichiers générés par les builds :
+*.log
+*.tmp
+node_modules/
+
+# Volumes Docker :
+db_data
+# Fichiers Docker contextuels :
+.dockerignore
+
+# Fichiers temporaires ou sauvegardes
+*.bak
+*~
