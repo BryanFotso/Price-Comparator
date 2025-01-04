@@ -19,7 +19,7 @@ class ScrapyProjectPipeline:
 class MySQLPipeline:
     def open_spider(self, spider):
         self.connection = mysql.connector.connect(
-            host='localhost',
+            host=os.getenv('MYSQL_HOST'),
             user=os.getenv("MYSQL_USER"),
             password=os.getenv("MYSQL_PASSWORD"),
             db=os.getenv("MYSQL_DATABASE")
@@ -32,7 +32,7 @@ class MySQLPipeline:
 
     def process_item(self, item, spider):
         sql = """
-            INSERT INTO watch_db (brand, model, price, url)
+            INSERT INTO watch (brand, model, price, source)
             VALUES (%s, %s, %s, %s)
         """ 
         

@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS watch (
     currency VARCHAR(100),
     stores VARCHAR(100),
     image_url VARCHAR(255),
-    source VARCHAR(100)
+    source TEXT
 );
