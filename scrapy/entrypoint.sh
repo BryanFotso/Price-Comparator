@@ -11,8 +11,10 @@ echo "Base de données prête !"
 
 # Lancer tous les spiders Scrapy
 echo "Lancement des spiders..."
-scrapy crawl kronos360
 scrapy crawl catawiki
+scrapy crawl kronos360
+
 
 # Garder le conteneur actif après l'exécution des spiders (facultatif)
+# La commande tail -f /dev/null lit de manière continue un fichier vide (/dev/null), ce qui garde le processus actif sans rien faire.
 tail -f /dev/null
