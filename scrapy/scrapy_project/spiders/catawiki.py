@@ -29,5 +29,7 @@ class amazon_Spider(scrapy.Spider):
         end_url = response.meta.get('url')
         if end_url :
             watch['url'] = response.urljoin(end_url)
-        
+            
+        watch['dimensions'] = response.xpath('//div[span[contains(text(),"Diameter/ Width Case")]]/div/span/text()').get()
+        watch['image_url'] = response.xpath("//img[contains(@alt, 'Rolex')]/@src").get()
         yield watch

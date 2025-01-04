@@ -26,5 +26,6 @@ class amazon_Spider(scrapy.Spider):
         end_url = response.meta.get('url')
         if end_url :
             watch['url'] = response.urljoin(end_url)
-        
+        watch['image_url'] = response.xpath('//img[contains(@alt,"Rolex")]/@src').get()
+        watch['dimensions'] = response.xpath('//li[span[contains(text(),"Dimensions")]]/span[2]/text()').get()
         yield watch

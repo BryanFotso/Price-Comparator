@@ -15,6 +15,7 @@ class ScrapyProjectItem(scrapy.Item):
     image_url = scrapy.Field()
     url = scrapy.Field()
     description = scrapy.Field()
-    # stores = scrapy.Field()
+    dimensions = scrapy.Field()
+    stores = scrapy.Field()
     model = scrapy.Field()
 
