@@ -22,6 +22,7 @@ $store_filter = isset($_GET['store']) ? $_GET['store'] : '';
 $min_price = isset($_GET['min_price']) ? $_GET['min_price'] : '';
 $max_price = isset($_GET['max_price']) ? $_GET['max_price'] : '';
 $brand_filter = isset($_GET['brand']) ? $_GET['brand'] : '';
+$sort_order = isset($_GET['sort']) ? $_GET['sort'] : '';
 
 $query = "SELECT * FROM watch WHERE 1=1";
 if ($store_filter) {
@@ -35,6 +36,12 @@ if ($max_price) {
 }
 if ($brand_filter) {
     $query .= " AND brand = ?";
+}
+
+if ($sort_order == 'asc') {
+    $query .= " ORDER BY CAST(REPLACE(REPLACE(REPLACE(TRIM(price), '€', ''), ' ', ''), ',', '.') AS DECIMAL(10,2)) ASC";
+} else {
+    $query .= " ORDER BY CAST(REPLACE(REPLACE(REPLACE(TRIM(price), '€', ''), ' ', ''), ',', '.') AS DECIMAL(10,2)) DESC";
 }
 
 $stmt = $conn->prepare($query);
@@ -115,6 +122,45 @@ if ($stmt) {
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
+            min-width: 150px;
+        }
+        
+        .sort-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .sort-buttons label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+        
+        .sort-buttons input[type="radio"] {
+            display: none;
+        }
+        
+        .sort-buttons label:hover {
+            border-color: #3498db;
+        }
+        
+        .sort-buttons input[type="radio"]:checked + span {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        select {
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        select:hover {
+            border-color: #3498db;
         }
         
         button {
@@ -247,6 +293,17 @@ if ($stmt) {
             
             <input type="number" name="min_price" placeholder="Prix minimum" value="<?php echo $min_price !== null ? htmlspecialchars($min_price) : ''; ?>">
             <input type="number" name="max_price" placeholder="Prix maximum" value="<?php echo $max_price !== null ? htmlspecialchars($max_price) : ''; ?>">
+            
+            <div class="sort-buttons">
+                <label>
+                    <input type="radio" name="sort" value="asc" <?php echo $sort_order === 'asc' ? 'checked' : ''; ?>>
+                    <span>Prix ↑</span>
+                </label>
+                <label>
+                    <input type="radio" name="sort" value="desc" <?php echo $sort_order !== 'asc' ? 'checked' : ''; ?>>
+                    <span>Prix ↓</span>
+                </label>
+            </div>
             
             <button type="submit">Filtrer</button>
             <?php if ($store_filter || $min_price || $max_price || $brand_filter): ?>
