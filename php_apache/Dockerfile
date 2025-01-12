@@ -1,12 +1,10 @@
-
 FROM debian
 
 RUN apt-get update && \
     apt-get install -y apache2 && \
-    apt-get install -y libapache2-mod_php8.2 && \
-    apt-get install -y php_mysql
+    apt-get install -y libapache2-mod-php8.2 && \
+    apt-get install -y php8.2-mysql
 
-COPY ./www /var/www/html/
 
 EXPOSE 80
 
