@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS watch (
     price VARCHAR(50),
     currency VARCHAR(25),
     stores VARCHAR(25),
-    description TEXT,
+    category VARCHAR(25),
     dimensions VARCHAR(100),
     image_url TEXT,
     source TEXT
