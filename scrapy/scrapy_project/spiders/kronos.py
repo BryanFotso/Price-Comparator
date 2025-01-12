@@ -7,14 +7,19 @@ class amazon_Spider(scrapy.Spider):
     
       
     def parse(self, response):
+        # Extraction des liens des montres sur la page actuelle
         watches_links = response.xpath('//strong[@class="product-name"]/a/@href').getall()
-        for link in watches_links :
+        for link in watches_links:
             yield response.follow(link, self.parse_link, meta={'url': link})
-        
-        next = response.xpath('//div[@class="pagination_next"]/a/@href').get()
-        if next is not None:
-            next_link = response.urljoin(next)
-            yield scrapy.Request(next_link)
+
+        # Pagination - limiter à 5 pages
+        current_page = response.meta.get('page', 1)  # Par défaut, page 1
+        if current_page < 3:  # Limite à 5 pages
+            next = response.xpath('//div[@class="pagination_next"]/a/@href').get()
+            if next is not None:
+                next_link = response.urljoin(next)
+                yield scrapy.Request(next_link, self.parse, meta={'page': current_page + 1})
+
               
     def parse_link(self, response):
         
