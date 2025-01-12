@@ -17,8 +17,8 @@ Products will be clickable, redirecting users to the product's page.
 
 Docker-based architecture:
 A container for Scrapy.
-A container for MySQL (optionally with PhpMyAdmin).
-A container for the web server (e.g., Flask, Django, or Node.js).
+A container for MySQL.
+A container for Apache php
 Docker Compose to orchestrate containers:
 All services can be started using a single docker-compose.yml file.
 
@@ -27,6 +27,4 @@ Scrapy: For web scraping.
 MySQL: To store product information.
 Docker: To containerize all components.
 Docker Compose: To manage and orchestrate containers.
-PHPMyAdmin (optional): For database management.
-Web Framework: Flask/Django/Node.js to build the web server.
-HTML/CSS: For the user interface.
+php/HTML/CSS: For the user interface.
