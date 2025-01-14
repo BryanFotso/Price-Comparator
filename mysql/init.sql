@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS watch (
     brand VARCHAR(100),
     model VARCHAR(100),
     price VARCHAR(50),
-    currency VARCHAR(25),
     stores VARCHAR(25),
     category VARCHAR(25),
     dimensions VARCHAR(100),

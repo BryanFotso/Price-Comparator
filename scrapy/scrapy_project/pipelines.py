@@ -32,11 +32,11 @@ class MySQLPipeline:
 
     def process_item(self, item, spider):
         sql = """
-            INSERT INTO watch (brand, model, price, source, dimensions, image_url, stores)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO watch (brand, model, price, source, dimensions, image_url, stores,category)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """ 
         
-        val = (item['brand'], item['model'], item['price_whole'], item['url'], item['dimensions'], item['image_url'], item['stores'])
+        val = (item['brand'], item['model'], item['price_whole'], item['url'], item['dimensions'], item['image_url'], item['stores'], item['category'])
         self.cursor.execute(sql,val)
         self.connection.commit()
         return item

@@ -10,11 +10,10 @@ class ScrapyProjectItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     price_whole = scrapy.Field()
-    currency = scrapy.Field()
     brand = scrapy.Field()
     image_url = scrapy.Field()
     url = scrapy.Field()
-    description = scrapy.Field()
+    category = scrapy.Field()
     dimensions = scrapy.Field()
     stores = scrapy.Field()
     model = scrapy.Field()
