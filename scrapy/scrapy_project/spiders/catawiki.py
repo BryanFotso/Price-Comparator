@@ -44,7 +44,11 @@ class amazon_Spider(scrapy.Spider):
             watch['stores'] = "Catawiki"
             watch['model'] = model
             watch['brand'] = response.xpath('//div[span[contains(text(),"Marque")]]/div/span/text()').get()
-            watch['price_whole'] = response.meta.get('price').replace('\xa0', ' ').strip()
+            price = response.meta.get('price')
+            if price:
+                watch['price_whole'] = price.replace('\xa0', ' ').strip()
+            else:
+                watch['price_whole'] = 'Non disponible'
             end_url = response.meta.get('url')
             if end_url :
                 watch['url'] = response.urljoin(end_url)    
