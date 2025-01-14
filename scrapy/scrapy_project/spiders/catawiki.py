@@ -16,7 +16,7 @@ class amazon_Spider(scrapy.Spider):
             yield response.follow(link, self.parse_link, meta={'url': link, 'price': price})
 
         # Gestion de la pagination (limiter à 4 pages)
-        for page in range(1, 5):
+        for page in range(1, 4):
             next_page = f'https://www.catawiki.com/fr/s?q=montre&filters=909%255B%255D%3D60922&page={page}'
             yield scrapy.Request(next_page, self.parse)
               

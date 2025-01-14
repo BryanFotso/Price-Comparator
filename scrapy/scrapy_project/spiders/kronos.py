@@ -13,7 +13,7 @@ class amazon_Spider(scrapy.Spider):
 
         # Pagination - limiter à 4 pages
         current_page = response.meta.get('page', 1) 
-        if current_page < 5: 
+        if current_page < 3: 
             next = response.xpath('//div[@class="pagination_next"]/a/@href').get()
             if next is not None:
                 next_link = response.urljoin(next)
