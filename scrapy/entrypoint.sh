@@ -11,6 +11,7 @@ echo "Base de données prête !"
 
 # Lancer tous les spiders Scrapy
 echo "Lancement des spiders..."
+scrapy crawl chronext
 scrapy crawl catawiki
 scrapy crawl kronos360
 
